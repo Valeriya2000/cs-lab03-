@@ -58,12 +58,13 @@ void svg_text(double left, double baseline, string text)
 {
     cout<<"<text x='"<<left<<"' y='"<<baseline<<"'>"<<text<<"</text>";
 }
-void svg_rect(double x, double y, double width, double height)
+void svg_rect(double x, double y, double width, double height,string stroke = "black", string fill = "black")
 {
-    cout<< "<rect x='"<<x<<"' y='"<<y<<"' width='"<<width<<"' height='"<<height<<"' />";
+    cout<< "<rect x='"<<x<<"' y='"<<y<<"' width='"<<width<<"' stroke='"<<stroke<<"' fill='"<<fill<<"' height='"<<height<<"' />";
 }
 void
 show_histogram_svg(const vector<size_t>& bins) {
+
     const auto IMAGE_WIDTH = 400;
 const auto IMAGE_HEIGHT = 300;
 const auto TEXT_LEFT = 20;
@@ -75,7 +76,7 @@ svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
 for (size_t bin : bins) {
     const double bin_width = 10 * bin;
     svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-    svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT);
+    svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT , "maroon" , "#E47811");
     top += BIN_HEIGHT;
 }
 svg_end();
